@@ -1,19 +1,26 @@
 import express from "express";
 import path from "path";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import cors from "cors";
+import api from "./api";
 
 const app = express();
+dotenv.config();
 
-// Serve the static files from the React app
+require("./config/sequelize");
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use("/api", api);
+
 app.use(express.static(path.join(__dirname, "../../client/build")));
 
-// An api endpoint that returns a short list of items
-app.get("/api/getList", (_req, res) => {
-  var list = ["item1", "item2", "item3"];
-  res.json(list);
-  console.log("Sent list of items");
-});
-
-// Handles any requests that don't match the ones above
 app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname + "../../client/build/index.html"));
 });

@@ -1,7 +1,6 @@
-# poll-loc
+# 🗳️ poll-loc 🗳️
 
-
-## local development
+## setup
 
 In the project directory run:
 
@@ -9,6 +8,10 @@ In the project directory run:
 yarn install
 yarn lerna bootstrap
 ```
+
+## running
+[client](packages/client/README.md)
+[server](packages/server/README.md)
 
 
 ## installing new dependencies
