@@ -1,15 +1,11 @@
 import { Router } from "express";
-import { User } from "../models";
+import auth from "./auth";
+import currentUser from "./currentUser";
+import { verifyUser } from "../middlewares";
+
 const router = Router();
 
-router.get("/test", async (req, res) => {
-  const user = await User.create({
-    userName: "test",
-    email: "test",
-    password: "test",
-  });
-
-  res.json(user);
-});
+router.use("/auth", auth);
+router.use("/current-user", verifyUser, currentUser);
 
 export default router;

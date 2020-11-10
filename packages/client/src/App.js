@@ -1,28 +1,20 @@
+import { CSSReset, ThemeProvider } from '@chakra-ui/core'
 import React from 'react'
+import { AuthProvider } from 'services/auth/context'
+import Routes from './routes'
+import { BrowserRouter } from 'react-router-dom'
 
-import './App.css';
-
-import logo from './logo.svg';
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <ThemeProvider>
+        <CSSReset />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </ThemeProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

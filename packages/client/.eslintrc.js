@@ -1,48 +1,40 @@
 module.exports = {
+  parser: 'babel-eslint',
+  extends: ['react-app', 'prettier', 'prettier/react'],
+  plugins: ['prettier', 'react-hooks'],
   env: {
-    commonjs: true,
-    node: true,
     browser: true,
-    es6: true,
-    jest: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
-  globals: {},
-  parser: "babel-eslint",
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: "module",
-  },
-  plugins: ["react", "prettier", "react-hooks", "simple-import-sort"],
   rules: {
-    "no-unused-vars": "off",
-    "react/prop-types": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/no-unescaped-entities": "off",
-    "camelcase": "off",
-    "simple-import-sort/sort": [
-      "error",
+    'react/jsx-sort-props': [
+      1,
       {
-        "groups": [
-          ["^react"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Packages.
-          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
-          ["^@?\\w"],
-          // Absolute imports and other imports such as Vue-style `@/foo`.
-          // Anything that does not start with a dot.
-          ["^[^.]"],
-          // Relative parent imports.
-          ["^\\.\\."],
-          // Relative imports.
-          ["^\\."],
-        ]
-      }
-    ]
-  }
-};
+        callbacksLast: true,
+        noSortAlphabetically: true,
+      },
+    ],
+    'no-duplicate-imports': 'error',
+    'prettier/prettier': [
+      1,
+      {
+        singleQuote: true,
+        semi: false,
+      },
+    ],
+    'prefer-const': 2,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
+    'no-unused-vars': [
+      1,
+      {
+        args: 'none',
+        ignoreRestSiblings: true,
+      },
+    ],
+    'react/jsx-filename-extension': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'import/prefer-default-export': 0,
+    'no-restricted-globals': [1, 'warning'],
+  },
+}

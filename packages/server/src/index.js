@@ -4,18 +4,15 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import api from "./api";
+import cookieParser from "cookie-parser";
 
 const app = express();
 dotenv.config();
 
 require("./config/sequelize");
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
 
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use("/api", api);
 
